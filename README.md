@@ -1,1 +1,1 @@
-To run app 
+To run app \gradlew run
