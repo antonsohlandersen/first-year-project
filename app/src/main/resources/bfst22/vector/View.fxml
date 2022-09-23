@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import bfst22.vector.MapCanvas?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.layout.HBox?>
+
+<?import bfst22.vector.AutoCompleteTextField?>
+<Scene xmlns="http://javafx.com/javafx"
+       xmlns:fx="http://javafx.com/fxml"
+       fx:controller="bfst22.vector.Controller"
+       fx:id="scene"
+>
+    <root>
+        <BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+            <center>
+                <MapCanvas fx:id="canvas" height="${scene.height}" onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" onMouseMoved="#onMouseMoved" onScroll="#onScroll" width="${scene.width}" />
+            </center>
+            <top>
+                <BorderPane prefHeight="49.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                    <top>
+                        <ToolBar fx:id="toolbar" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <items>
+                                <AnchorPane prefHeight="30.0" prefWidth="583.0">
+                                <children>
+                                    <Button fx:id="searchButton" layoutX="249.0" layoutY="4.0" mnemonicParsing="false" text="Search" onAction = "#searchedAddress" />
+                                    <AutoCompleteTextField fx:id="addressTextField" layoutY="4.0" prefHeight="25.0" prefWidth="238.0" promptText="Search for an address..." onKeyTyped="#suggestAddress" />
+                                    <Button fx:id="loadFileButton" layoutX="320" layoutY ="4.0" mnemonicParsing="false" text="Load file" onAction = "#loadFile" />
+                                    <Button fx:id="loadDirectionsButton" layoutX="400.0" layoutY="4.0" mnemonicParsing="false" text="Directions" onAction="#loadDirections" />
+                                    <MenuButton fx:id="settingsButton" layoutX="490.0" layoutY="4.0" mnemonicParsing="false" text="Settings">
+                                        <items>
+                                            <Menu mnemonicParsing="false" text="Transportation">
+                                            <items>
+                                                <MenuItem fx:id="carButton" mnemonicParsing="false" onAction="#onCar" text="Car" />
+                                                <MenuItem fx:id="bikeButton" mnemonicParsing="false" onAction="#onBike" text="Bike" />
+                                                <MenuItem fx:id="walkButton" mnemonicParsing="false" onAction="#onWalk" text="Walk" />
+                                            </items>
+                                            </Menu>
+                                            <Menu mnemonicParsing="false" text="Theme">
+                                            <items>
+                                                <MenuItem onAction="#onNormalTheme" mnemonicParsing="false" text="Normal" />
+                                                <MenuItem onAction="#onBlackAndWhiteTheme" mnemonicParsing="false" text="Black &amp; White" />
+                                                <MenuItem onAction="#onColorblindTheme" mnemonicParsing="false" text="Colorblind" />
+                                                <MenuItem onAction="#onSickoMode" mnemonicParsing="false" text="Sicko Mode" />
+                                            </items>
+                                            </Menu>
+                                        </items>
+                                    </MenuButton>
+                                </children>
+                                </AnchorPane>
+                            </items>
+                        </ToolBar>
+                    </top>
+                    <bottom>
+                        <StackPane prefHeight="15.0" prefWidth="1294.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <HBox prefHeight="25.0" prefWidth="647.0" BorderPane.alignment="CENTER">
+                                    <ProgressBar fx:id="zoomLevel" prefHeight="12.0" progress="0.001" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                </HBox>
+                            </children>
+                        </StackPane>
+                    </bottom>
+                </BorderPane>
+            </top>
+            <bottom>
+                <BorderPane prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                    <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <children>
+                            <Button fx:id="zoomPlus" layoutX="15.0" layoutY="25.0" mnemonicParsing="false" text="+" onAction="#zoomPositive">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Button>
+                            <Button fx:id="zoomMinus" layoutX="15.0" layoutY="65.0" mnemonicParsing="false" text="-" onAction="#zoomNegative">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Button>
+                        </children>
+                        </AnchorPane>
+                    </left>
+                    <right>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <children>
+                            <Label fx:id="showNearestHighwayLabel" alignment="CENTER" layoutX="30.0" layoutY="76.0" prefHeight="20.0" prefWidth="150.0" />
+                        </children>
+                        </AnchorPane>
+                    </right>
+                </BorderPane>
+            </bottom>
+            <left>
+                <StackPane fx:id="stackpane" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <AnchorPane pickOnBounds="false" prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <Button fx:id="planRouteButton" layoutX="6.0" layoutY="8.0"  maxHeight="-Infinity" mnemonicParsing="false" onAction="#onPlanRoute" text="Plan Route" />
+                                <DialogPane fx:id="dialogpane" layoutX="6.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0">
+                                    <header>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="385.0">
+                                        <children>
+                                            <Text layoutX="14.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From:" />
+                                            <Text layoutX="14.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To:" />
+                                            <Text fx:id="planRouteText" layoutX="120.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plan your route" textAlignment="CENTER" />
+                                            <AutoCompleteTextField fx:id="firstAddressTextField" layoutX="5.0" layoutY="53.0" prefWidth="244.0" onKeyTyped="#suggestStartAddress" />
+                                            <AutoCompleteTextField fx:id="secondAddressTextField" layoutX="5.0" layoutY="146.0" prefHeight="25.0" prefWidth="244.0" onKeyTyped="#suggestEndAddress" />
+                                            <Button fx:id="startRouteButton" layoutX="255.0" layoutY="104.0" mnemonicParsing="false" onAction="#searchedAddresses" text="Start route" />
+                                            <Text layoutX="14.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: ROBOTO;" text="Transportation:" textAlignment="CENTER" />
+                                            <Button fx:id="routeCarButton" layoutX="30.0" layoutY="215.0" mnemonicParsing="false" onAction="#onCar" text="Car" />
+                                            <Button fx:id="routeBikeButton" layoutX="152.0" layoutY="215.0" mnemonicParsing="false" onAction="#onBike" text="Bike" />
+                                            <Button fx:id="routeWalkButton" layoutX="270.0" layoutY="215.0" mnemonicParsing="false" onAction="#onWalk" text="Walk" />
+                                        </children>
+                                        </AnchorPane>
+                                    </header>
+                                </DialogPane>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </StackPane>
+            </left>
+        </BorderPane>
+    </root>
+</Scene>
+

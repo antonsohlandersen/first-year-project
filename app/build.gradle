@@ -1,0 +1,65 @@
+plugins {
+    id 'application'
+    id "com.adarshr.test-logger" version "3.1.0"
+    id 'org.openjfx.javafxplugin' version '0.0.11'
+    id 'jacoco'
+
+    //Plugin for creating a fat/uber Jar-file.
+    //Type gradlew shadowJar in cmd to make Jar-file.
+    id "com.github.johnrengelman.shadow" version "7.1.0"
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+shadowJar{
+    exclude"module-info.class"
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation "org.testfx:testfx-junit5:4.0.16-alpha"
+}
+
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(JavaExec) {
+    jvmArgs = ['-Xmx6g']
+}
+
+application {
+    mainClass = 'bfst22.vector.Main'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+jacoco{
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport{
+    reports{
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = true
+    }
+}
+
+
+

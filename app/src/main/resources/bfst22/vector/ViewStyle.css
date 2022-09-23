@@ -1,0 +1,58 @@
+.root {
+    -fx-font-family: "Roboto";
+}
+
+#toolbar {
+    -fx-background-color: #e9e9e9;
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+}
+
+#zoomPlus, #zoomMinus {
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+    -fx-background-color: #e9e9e9;
+    -fx-border-radius: 5px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#colorChanger, #planRouteButton {
+    -fx-background-color: #e9e9e9;
+    -fx-border-radius: 5px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#searchButton, #startRouteButton, #loadFileButton, #loadDirectionsButton, #settingsButton, #routeCarButton, #routeBikeButton, #routeWalkButton {
+    -fx-background-color: #e9e9e9;
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #000000;
+    -fx-font-weight: bold;
+}
+
+#zoomPlus:hover, #zoomMinus:hover, #colorChanger:hover, #planRouteButton:hover, #searchButton:hover, #startRouteButton:hover, #loadFileButton:hover, 
+#routeCarbutton:hover, #routeBikeButton:hover, #routeWalkButton:hover {
+    -fx-background-color: #FEFFFF;
+}
+
+#loadDirectionsButton:hover, #settingsButton:hover {
+    -fx-background-color: #FEFFFF;
+}
+
+#dialogpane {
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#showNearestHighwayLabel {
+    -fx-background-color: #FEFFFF;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#planRouteText {
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}   
