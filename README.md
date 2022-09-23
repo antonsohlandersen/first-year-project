@@ -1,1 +1,1 @@
-To run app \gradlew run
+To run the app write **\gradlew run** in terminal
